@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#08070d"><title>MAHER ZERO</title>
+<style>
+:root{--bg:#08070d;--panel:#15111e;--purple:#9b5cff;--red:#ff3158;--muted:#a59ab7;--line:#30243f}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#28113c 0,transparent 42%),radial-gradient(ellipse at 0% 80%,#310d20 0,transparent 35%),var(--bg);color:#fff;font-family:system-ui,-apple-system,sans-serif;min-height:100vh;overflow-x:hidden}
+header{padding:26px 22px 12px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:21px;font-weight:900;letter-spacing:3px}.brand span{color:var(--purple)}.status{font-size:11px;color:#bca9d4;border:1px solid var(--line);border-radius:20px;padding:7px 10px}
+main{padding:12px 18px 100px;max-width:650px;margin:auto}.hero{border:1px solid #49305f;background:linear-gradient(135deg,#21152fdd,#130e1cdd);border-radius:26px;padding:23px;position:relative;overflow:hidden;box-shadow:0 18px 55px #0008}.hero:after{content:"";position:absolute;width:190px;height:190px;border:1px solid #a45cff55;border-radius:50%;left:-55px;top:-70px;box-shadow:0 0 0 18px #a45cff0c,0 0 0 38px #a45cff08}.eyebrow{color:#c69cff;font-size:11px;letter-spacing:2px}.clock{font-size:48px;font-weight:300;line-height:1.2;margin:9px 0 2px;direction:ltr;text-align:right}.date{color:var(--muted);font-size:13px}.hero-foot{display:flex;justify-content:space-between;align-items:center;margin-top:22px;color:#d8c9e8;font-size:12px}.pulse{width:8px;height:8px;background:#9effbd;border-radius:50%;display:inline-block;box-shadow:0 0 12px #9effbd;margin-left:7px}
+.section{display:flex;align-items:center;justify-content:space-between;margin:25px 3px 12px}.section h2{font-size:14px;margin:0;letter-spacing:1px}.section small{color:var(--muted)}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{background:linear-gradient(145deg,#1b1525,#100d17);border:1px solid var(--line);border-radius:19px;padding:17px 15px;min-height:102px;text-align:right;color:#fff;cursor:pointer}.tile:active{transform:scale(.97)}.ico{font-size:22px;margin-bottom:10px}.tile b{display:block;font-size:13px}.tile small{color:var(--muted);font-size:10px}.apps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.app{border:1px solid var(--line);background:#15111d;border-radius:16px;padding:14px 6px;text-align:center;color:white;min-height:78px;overflow:hidden}.app .ico{margin:0 0 6px}.app span{font-size:11px;display:block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+.action{width:100%;padding:14px;border-radius:15px;border:1px solid #7042a1;background:linear-gradient(90deg,#5c2b91,#321a4c);color:white;font-weight:700;margin-top:12px;font-size:13px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#0d0a13ed;backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:13px 8px calc(13px + env(safe-area-inset-bottom));z-index:5}nav button{background:none;border:0;color:#a99bb8;font-size:11px}nav button.active{color:#d5aaff}
+#appsPage,#aboutPage{display:none}.notice{color:#a99bb8;font-size:11px;line-height:1.7;margin-top:18px;text-align:center}.tag{display:inline-block;color:#ff9bb0;border:1px solid #63263b;padding:5px 9px;border-radius:20px;font-size:10px}
+</style></head>
+<body>
+<header><div class="brand">MAHER <span>ZERO</span></div><div class="status">● SYSTEM ONLINE</div></header>
+<main id="homePage">
+ <section class="hero"><div class="eyebrow">PERSONAL INTERFACE / 001</div><div class="clock" id="clock">00:00</div><div class="date" id="date">...</div><div class="hero-foot"><span><i class="pulse"></i>النظام يعمل</span><span class="tag">ZERO CORE</span></div></section>
+ <div class="section"><h2>مركز التحكم</h2><small>QUICK ACCESS</small></div>
+ <div class="tiles">
+  <button class="tile" onclick="phoneSetting('wifi')"><div class="ico">⌁</div><b>إعدادات Wi‑Fi</b><small>إدارة الاتصال</small></button>
+  <button class="tile" onclick="phoneSetting('bluetooth')"><div class="ico">ᛒ</div><b>Bluetooth</b><small>الأجهزة القريبة</small></button>
+  <button class="tile" onclick="phoneSetting('display')"><div class="ico">◉</div><b>الشاشة</b><small>السطوع والعرض</small></button>
+  <button class="tile" onclick="phoneSetting('sound')"><div class="ico">♫</div><b>الصوت</b><small>مستوى الصوت</small></button>
+ </div>
+ <div class="section"><h2>بوابتك إلى التطبيقات</h2><small>YOUR APPS</small></div>
+ <div class="apps" id="homeApps"></div>
+ <button class="action" onclick="showApps()">فتح مكتبة التطبيقات ←</button>
+ <div class="notice">MAHER ZERO · واجهتك الخاصة<br>بعض وظائف الهاتف تفتح إعدادات أندرويد الرسمية.</div>
+</main>
+<main id="appsPage"><div class="section"><h2>مكتبة التطبيقات</h2><small id="appCount">LOADING</small></div><div class="apps" id="allApps"></div><button class="action" onclick="showHome()">العودة للرئيسية</button></main>
+<main id="aboutPage"><section class="hero"><div class="eyebrow">IDENTITY</div><h1 style="letter-spacing:4px">MAHER ZERO</h1><p style="color:var(--muted);line-height:1.8">واجهة شخصية مستقبلية لهاتفك، بهوية الأسود الملكي والبنفسجي والأحمر.</p><span class="tag">VERSION 1.0</span></section><button class="action" onclick="phoneSetting('all')">إعدادات أندرويد</button></main>
+<nav><button class="active" id="navHome" onclick="showHome()">⌂<br>الرئيسية</button><button id="navApps" onclick="showApps()">▦<br>التطبيقات</button><button id="navAbout" onclick="showAbout()">◈<br>حول النظام</button></nav>
+<script>
+function tick(){let d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('ar',{hour:'2-digit',minute:'2-digit',hour12:false});document.getElementById('date').textContent=d.toLocaleDateString('ar',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}
+tick();setInterval(tick,1000);
+function phoneSetting(p){if(window.MaherPhone)MaherPhone.openSettings(p);else alert('تتوفر هذه الوظيفة عند تثبيت التطبيق على أندرويد.');}
+function showPage(id){['homePage','appsPage','aboutPage'].forEach(x=>document.getElementById(x).style.display=x===id?'block':'none');['navHome','navApps','navAbout'].forEach((x,i)=>document.getElementById(x).classList.toggle('active',['homePage','appsPage','aboutPage'][i]===id));window.scrollTo(0,0);}
+function showHome(){showPage('homePage')}function showApps(){showPage('appsPage')}function showAbout(){showPage('aboutPage')}
+function getApps(){let list=[];try{if(window.MaherPhone)list=JSON.parse(MaherPhone.getApps())}catch(e){}return list.sort((a,b)=>a.name.localeCompare(b.name));}
+function appCard(a){let el=document.createElement('button');el.className='app';el.innerHTML='<div class="ico">◈</div><span></span>';el.querySelector('span').textContent=a.name;el.onclick=()=>{if(window.MaherPhone)MaherPhone.launchApp(a.package)};return el;}
+let apps=getApps();document.getElementById('appCount').textContent=apps.length+' APPS';let all=document.getElementById('allApps');apps.forEach(a=>all.appendChild(appCard(a)));let home=document.getElementById('homeApps');apps.slice(0,6).forEach(a=>home.appendChild(appCard(a)));
+</script></body></html>
